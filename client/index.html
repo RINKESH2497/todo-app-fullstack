@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Modern todo app with advanced task management, priorities, categories, and statistics"
+    />
+    <title>Modern Todo App - Task Management Made Beautiful</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico.png" type="image/x-icon" />
+    <style>
+      .app-icon {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-content">
+          <div>
+            <h1 class="app-title">
+              <img src="favicon.ico.png" alt="App Icon" class="app-icon" /> Modern
+              Todo
+            </h1>
+            <p class="app-subtitle">Organize your life with style and efficiency</p>
+          </div>
+          <div class="user-profile">
+            <div class="user-info">
+              <span class="user-name" id="user-name">Loading...</span>
+              <span class="user-email" id="user-email"></span>
+            </div>
+            <button id="logout-btn" class="btn-icon logout-btn" title="Logout">
+              🚪
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Task Input Section -->
+      <section class="task-input-section glass-card">
+        <div class="input-group">
+          <div class="input-row">
+            <input
+              type="text"
+              id="task-input"
+              class="input-field"
+              placeholder="What needs to be done?"
+              autocomplete="off"
+            />
+          </div>
+          <div class="input-row">
+            <select id="priority-select" class="select-field">
+              <option value="low">🟢 Low Priority</option>
+              <option value="medium" selected>🟡 Medium Priority</option>
+              <option value="high">🔴 High Priority</option>
+            </select>
+            <input
+              type="text"
+              id="category-input"
+              class="input-field"
+              placeholder="Category (e.g., Work, Personal)"
+              autocomplete="off"
+            />
+            <input type="date" id="due-date-input" class="input-field" />
+            <button id="add-task-btn" class="btn btn-primary">
+              <span>➕</span>
+              <span>Add Task</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters & Search Section -->
+      <section class="filters-section glass-card">
+        <div class="input-row mb-md">
+          <input
+            type="text"
+            id="search-input"
+            class="input-field"
+            placeholder="🔍 Search tasks..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="filters-grid">
+          <button class="filter-btn active" data-filter="all">All Tasks</button>
+          <button class="filter-btn" data-filter="active">Active</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+          <button class="filter-btn" data-filter="high">High Priority</button>
+          <button class="filter-btn" data-filter="medium">
+            Medium Priority
+          </button>
+          <button class="filter-btn" data-filter="low">Low Priority</button>
+        </div>
+      </section>
+
+      <!-- Tasks List Section -->
+      <section class="tasks-section glass-card">
+        <div id="tasks-list" class="tasks-list">
+          <!-- Tasks will be dynamically inserted here -->
+          <div class="empty-state" id="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <div class="empty-state-text">No tasks yet</div>
+            <p class="text-muted">Add a task above to get started!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statistics Dashboard -->
+      <section class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-value" id="total-tasks-stat">0</div>
+            <div class="stat-label">Total Tasks</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-value" id="completed-tasks-stat">0</div>
+            <div class="stat-label">Completed</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-value" id="active-tasks-stat">0</div>
+            <div class="stat-label">Active</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-value" id="completion-rate-stat">0%</div>
+            <div class="stat-label">Completion Rate</div>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="completion-progress"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="api-service.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

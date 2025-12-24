@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Login or sign up to access your personal todo list"
+    />
+    <title>Login - Modern Todo App</title>
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="icon" href="favicon.ico.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card glass-card">
+        <!-- Header -->
+        <div class="auth-header">
+          <img src="favicon.ico.png" alt="App Icon" class="auth-icon" />
+          <h1 class="auth-title">Modern Todo</h1>
+          <p class="auth-subtitle">Organize your life with style</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="tab-switcher">
+          <button class="tab-btn active" data-tab="login">Login</button>
+          <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Error/Success Message -->
+        <div id="auth-message" class="auth-message hidden"></div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input
+              type="email"
+              id="login-email"
+              class="input-field"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input
+              type="password"
+              id="login-password"
+              class="input-field"
+              placeholder="••••••••"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>🔓</span>
+            <span>Login</span>
+          </button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form hidden">
+          <div class="form-group">
+            <label for="signup-name">Name</label>
+            <input
+              type="text"
+              id="signup-name"
+              class="input-field"
+              placeholder="Your Name"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input
+              type="email"
+              id="signup-email"
+              class="input-field"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input
+              type="password"
+              id="signup-password"
+              class="input-field"
+              placeholder="••••••••"
+              required
+              autocomplete="new-password"
+              minlength="6"
+            />
+            <small class="field-hint">At least 6 characters</small>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="signup-confirm-password"
+              class="input-field"
+              placeholder="••••••••"
+              required
+              autocomplete="new-password"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>✨</span>
+            <span>Create Account</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="api-service.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>
