@@ -2,7 +2,14 @@
 // API Service for Todo App
 // ============================================
 
-const API_BASE_URL = 'http://localhost:5000/api';
+
+// Automatically detect API URL based on environment
+// In production (Render), use the same origin as the frontend
+// In development (localhost), use localhost:5000
+const API_BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000/api'
+  : `${window.location.origin}/api`;
+
 
 class ApiService {
   // Helper method for making HTTP requests
@@ -21,6 +28,7 @@ class ApiService {
         ...options,
       });
 
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         
@@ -34,12 +42,14 @@ class ApiService {
         throw new Error(errorData.error || errorData.message || `HTTP error! status: ${response.status}`);
       }
 
+
       return await response.json();
     } catch (error) {
       console.error('API Request Error:', error);
       throw error;
     }
   }
+
 
   // ============================================
   // AUTHENTICATION METHODS
@@ -53,6 +63,7 @@ class ApiService {
     });
   }
 
+
   // Login user
   async login(email, password) {
     return this.request('/auth/login', {
@@ -61,10 +72,12 @@ class ApiService {
     });
   }
 
+
   // Get current user profile
   async getCurrentUser() {
     return this.request('/auth/me');
   }
+
 
   // Logout (client-side)
   logout() {
@@ -73,14 +86,17 @@ class ApiService {
     window.location.href = 'auth.html';
   }
 
+
   // ============================================
   // TASK METHODS
   // ============================================
+
 
   // Fetch all tasks
   async fetchTasks() {
     return this.request('/tasks');
   }
+
 
   // Create a new task
   async createTask(taskData) {
@@ -90,6 +106,7 @@ class ApiService {
     });
   }
 
+
   // Update an existing task
   async updateTask(id, taskData) {
     return this.request(`/tasks/${id}`, {
@@ -98,12 +115,14 @@ class ApiService {
     });
   }
 
+
   // Delete a task
   async deleteTask(id) {
     return this.request(`/tasks/${id}`, {
       method: 'DELETE',
     });
   }
+
 
   // Reorder tasks (for drag and drop)
   async reorderTasks(tasks) {
@@ -113,11 +132,16 @@ class ApiService {
     });
   }
 
+
   // Health check
   async checkHealth() {
     return this.request('/health');
   }
 }
 
+
 // Export a singleton instance
 const apiService = new ApiService();
+
+
+
